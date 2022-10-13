@@ -1,157 +1,160 @@
-# SEI Project Two, Recipe App: React App Using an API
+## DescriptionDescription
 
-# Table of contents
-* [Project Overview](#project-overview)
-* [Deployment Link](#deployment-link)
-* [Timeframe and Team](#timeframe-and-team) 
-* [Technologies Used](#technologies-used)
-* [Brief](#brief) 
-* [Planning](#planning)
-* [Build Process](#build-process)
-* [Challenges](#challenges)
-* [Wins](#wins)
-* [Key Learnings](#key-learnings)
-* [Bugs](#bugs)
-* [Future Improvements](#future-improvements) 
+After 2 weeks of learning React, Bootstrap and how to work with APIs, we were set a paired project (to be completed in under two days) with a brief of creating a React application, containing components which consumed a public API. We were told that if we were feeling ambitious our page could include Routers. 
 
-# Project Overview
+## Deployment Link 
 
-This is the second project I did for a Software Engineering Immersive course through General Assembly London. I worked with [Joe Rose](https://github.com/JRose117). In this app, users can navigate through categories of recipes to individual recipes, or jump to a randomly selected recipe. 
+https://react-recipe-app-2-day-project.netlify.app/
 
-![Landing](README-Images/landing.png)
+## Overview
 
-# Deployment Link
+![](./ReadMeImages/1.gif)
 
-The app has been deployed with Netlify and is available [here.](https://react-recipe-app-2-day-project.netlify.app/)
-
-# Timeframe and Team
-
-* 2 day timeframe
-* Joe Rose (https://github.com/JRose117)
-
-# Technologies Used 
-
-__Front-End__
-
-* Axios
-* CSS3
-* HTML5
-* JavaScript
-* JSX
-* Microsoft Visual Studio Live Share
-* React Bootstrap 
-* React Router DOM
-* React.js
-* Sass
-
-__Deployment__ 
-
-* Netlify 
+## Timeframe & Working Team
 
 
-__Other__
+We had just under two days to complete this assignment and I worked with Kate (https://github.com/kdshea/) who is also on the General Assembly programme.
 
-* Chrome developer tools
-* Excalidraw
-* Git & GitHub
-* Insomnia
-* YouTube
-
-# Brief
-
-* Build a React application that consumes a public API.
-* The application should have several components and a router with several pages. 
-
-# Planning
-
-* We brainstormed ideas and found a public API that had endpoints for categories of recipes and individual recipes. The API documentation is available at https://www.themealdb.com/. We used Excalidraw to create wireframes of our home page with all the categories, a page where the recipes are filtered by category, and a single recipe page. 
-
-	* All Recipe Categories Wireframe
+## Technologies Used
  
-![All Categories Wireframe](README-Images/AllCategories.png)
+JavaScript
+HTML
+CSS
+Slack
+React
+React - Bootstrap
+Insomnia
+VSCode Liveshare
+GitHub
+Netlify
+Excalidraw
 
-	* Single Category of Recipes Wireframe
+## Wireframes
+
+Home Page -> (with footer in Navbar instead of at bottom of page)
+
+![](./ReadMeImages/2.png)
+
+Filtered Page (either navbar or a filter on homepage)
+(Recipes filtered by category) (with footer in Navbar instead of at bottom of page)
+
+![](./ReadMeImages/2.png)
+
+When a card is clicked
+Recipe clicked from filtered category page
+(with footer in Navbar instead of at bottom of page)
+
+![](./ReadMeImages/3.png)
+
+## Components
+NotFound
+
+RecipeSingle
+www.themealdb.com/api/json/v1/1/lookup.php?i= :id
+(example: www.themealdb.com/api/json/v1/1/lookup.php?i=52772)
+
+PageNavbar
+
+RandomPage
+www.themealdb.com/api/json/v1/1/random.php
+
+Home: CategoryIndex
+List of categories with thumbnails: www.themealdb.com/api/json/v1/1/categories.php
+
+
+## Plan
+
+We worked on Zoom, Google Meet, WhatsApp and Excalidraw. We pair-coded for the whole of this project using VSCode LiveShare. 
+
+For our initial plan we set ourselves a series of tasks which needed to be completed. These tasks were:
+
+- Link App.js and Index.js
+- Set up our routes/ BrowserRouter in the App.js and import our components
+- Create components which all contain a different tag just to check they are linked and working
+- Create a PageNavbar that links to the homepage
+- Create links on Insomnia for our API (themealDB) and copy these into our frontend
+- Make cards using one recipe category and apply Bootstrap CSS on that one recipe category, then once we’re happy with the CSS, we can use an async function with a  try catch to import our data, and swap our recipe category’s data to the imported data (e.g. swap Desert to { strCategory }) 
+- We need to display the name of the category (strCategory), a picture (strCategoryThumb) and we will need its ID for the key (idCategory) 
+- Create filters (by strCategory)  
+- With the filters we’re going to use useParams() but we need to play around with it to be 100% sure of what information we’re going to be saving. Our key will be category and our value will be the one they chose.  
+- Individual Page (RecipeSingle component) has strMeal, strMealThumb and strInstructions
+- We need to do a check on if strIngredients and strMeasure exists, and if it does we display it. 
+- We can do a loop so that it runs as many times as ingredients there are so we don’t have to manually write out 20 tests.
+- As a stretch, we can use random.php to find a random recipe. 
+
+We were asked to pair-code for the whole project and we chose to use VSCode LiveShare to collaborate.
+
+## Build/ Code process
+
+We split our project into several components.
+
+![](./ReadMeImages/4.png)
+
+Category Index acted as our home page and it showed all the different categories of food in our API.
+
+![](./ReadMeImages/5.png)
+
+The person accessing our project was encouraged to click on one of the categories which would lead them to our CategorySingle component.
+
+Within CategorySingle, we filtered the recipes and displayed only the recipes whose category matched the category selected in CategoryIndex. For example, below is the result of selecting Lamb in CategoryIndex.
+
+![](./ReadMeImages/6.png)
+
+When the user selected a recipe, they were directed to the RecipeSingle component. Within Recipe Single, we displayed the recipe name, measurements, ingredients, instructions and an embedded YouTube video.
+
+![](./ReadMeImages/7.png)
+
+We also added a navbar to allow quick navigation between our components, a home button which links to CategoryIndex and a randomRecipe which uses navigate() and useNavigate to automatically redirect to a random recipe.
+
+
+## Challenges
+
+One of the main challenges was that we wanted our method for displaying strIngredient and strMeasure to be dynamic. Instead of having 40 lines (including a test if the element existed), we thought we could use a few lines to achieve the same result. 
+
+![](./ReadMeImages/8.png)
+
+We turned these objects into an array so we could apply array methods. 
+
+We then mapped through ingredients, firstly checking if the ingredient was truthy (existed) and then pushed it to a new empty array (ingredients). We then created a new count and repeated the process for measure. This meant we were left with an array which showed our ingredients and measurements and only showed them when they existed.
+
+![](./ReadMeImages/9.png)
+
+Another challenge was getting our YouTube videos to embed. We wanted to embed them because an embedded video looks better than YouTube links, and it also meant that the user would be encouraged to stay on our page. 
+
+We used Slice() to take the last 11 characters from the end of the youtube URLs
+
+![](./ReadMeImages/10.png)
+
+We inserted our YouTube link into the HTML code provided by YouTube to embed videos. 
+
+![](./ReadMeImages/11.png)
+
+## Bugs
+
+When entering a URL that starts with https://react-recipe-app-2-day-project.netlify.app/a/ it won’t take you to our error page, but instead it displays a blank page.
+
+Some YouTube videos, provided by the API, have since been deleted or made private. 
+
+## Wins
+
+This was the first project where we worked with a backend and we were given complete freedom to find an API we were interested in. We liked this one because it had so many routes to play around with and gave us a lot of space to create an interesting website. We used our index of types of foods, to take us to an index of recipes within that cuisine and finally a single recipe page. We also had a random recipe page to take us to a single recipe page. This meant that our website felt full. A big win was that the fullness of our website naturally led to multiple routes - having routes at all was something we considered to be a “nice to have” feature. 
+
+Another win was that we were able to complete this project almost entirely independently, we were shown how to use react only a few days before we started this project, and were able to apply our knowledge with minimal assistance from our instructors, only needing help with deploying our final project - which is understandable as it was our first time using Netlify. 
+
+## Key Learnings and Takeaways
+
+It was great to practise using React and Bootstrap. I also enjoyed the freedom of being able to find an API and then learning how to access an API I was unfamiliar with.
+
+There were two main takeaways for me, working in a group and working with a backend:
+
+## Working in a group:
+
+On General Assembly, the majority of homework was completed independently, our first project was completed independently and whilst I might have worked with other people in class, it was rare to complete every step of a project together. This was the first project where everything from the initial plan to the final line of code written, was done as a pair. This meant that we learnt how to sort the logistics of working together - made more challenging living in different continents! We worked over WhatsApp, Slack, Google Meet, Excalidraw, iMessage, Zoom  and Google Drive - it felt like we used everything. Eventually we found VSCode LiveShare, which combined with Zoom, allowed us to work extremely well together. We could show the other person what we were thinking on VSCode Live Share and share our ideas on Zoom before we started coding. 
+
+As well as the logistics of working remotely, I learnt a lot from Kate, her planning was detailed, she kept all the steps very simple, and unlike my Project 1 - there was a huge focus on making our website mobile friendly. 
+
+I also learnt more about APIs. The process of finding our API meant that we searched through websites such as https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/ and https://rapidapi.com/collection/list-of-free-apis. This process showed me the kind of project where an API is most commonly used and exploring further showed me the range of uses they can have. 
+
+## Future Improvements
  
-![Single Category Wireframe](README-Images/RecipesByCategory.png)
-
-	* Single Recipe Wireframe
- 
-![Single Recipe Wireframe](README-Images/SingleRecipe.png)
-
-* We would need the following components for our app: Nav Bar, Category Index, Single Category, Single Recipe, Random Page, and Not Found. The Category Index page was our landing page that showed all the recipe categories returned from the API. Clicking on a category navigates to the Category Single page. We used a different API endpoint that returned recipes filtered by category. From there, clicking on a recipe navigates to the Recipe Single page. There we would display the recipe image, ingredients, and instructions. There is an API endpoint that returns a random recipe ID. One of our stretch goals was to add a button using the randomly generated ID to navigate to that recipe. 
-
-
-# Build Process
-
-* We worked through the entire project together over Zoom. For the app, I coded while Joe followed along using Microsoft Visual Studio Live Share. For the styling, we used the same process but Joe coded while I followed along.
-
-* First, we created our React app and linked our App.js and Index.js. We made components for each of our pages. We set up our BrowserRouter and imported the components to the App.js. 
-
-* Using Insomnia, we tested the links from our API. We used AJAX to make the async Axios requests in a try catch block to import the API data. This was executed inside a UseEffect that only triggered on the initial page load. This same process was repeated on the pages to get all categories, a single category, a single recipe, and a random recipe. Here is an example of one of our Axios requests:
-
-	* Example Axios Request
- 
-![Example Axios Request](README-Images/AxiosRequestExample.png)
-
-* We used React Bootstrap cards to style the pages with multiple categories and multiple recipes. We made text size responsive and added a media query for larger screens. A screenshot of the JSX for a recipe card is shown below with a multiple recipe page populated with recipe cards:
-
-	* Recipe Card JSX
- 
-![Recipe Card JSX](README-Images/RecipeCardJSX.png)
-
-	* Example Recipe Cards
- 
-![Example Recipe Cards](README-Images/RecipeCardsExample.png)
-
-
-* The data returned for the single recipes had ingredients and measures split into multiple strings of numbers and strings of text with the ingredient names. To generate a list of ingredients matching the measurements to the name, we made an array of the measurements and then iterated through and concatenated the corresponding text to the end of each array item. A more detailed description of this code is highlighted in the #Challenges section.
-
-* We made another component Pan, with a GIF of a pan flipping food to show while the pages were loading. We added a ternary that checked if the API data was loaded. If it was, it displayed our page component. There was another ternary nested so if there was no data AND there were errors, it displayed an error message. If there was no data but no errors, it would display the page loading pan GIF.
-
-* The YouTube links we needed to use to embed the videos were different from the YouTube links the API data returned. We were able to convert the links and add them into the JSX of the recipe page. A detailed description of the process we used is below in the #Wins section.
-
-
-# Wins
-
-* We wanted to display the YouTube videos on the recipe page because the YouTube thumbnails were usually more visually appealing than the other recipe images and videos encourage the user to stay on the page longer. 
-
-* The link format for embedded videos is different from the standard YouTube link format, but the last 11 characters of the links are the unique video identifiers. We used .slice()to take the unique end of the API YouTube link and add if to the embedded link format. We then took that link and put it inside an inline frame HTML element to display it. 
-
-
-	* Code to Embed YouTube Links
- 
-![Embedded YouTube Link](README-Images/EmbeddedYouTubeLink.png)
-
-# Challenges 
-
-* The ingredient list on our app looks straight forward in the deployed project, but the code to display the ingredients was a JavaScript challenge for us. The data returned strings of ingredients (ex: “strIngredient1”: “Lentils”) and strings of strings of measurements (ex: “strMeasure1: “1 cup”). The strings could number up to 20, but not all recipes had that many ingredients. We used Object.entries()to get an array of the key-value pairs of the recipe data and then iterated through returning and keys that contained “strIngredient” whose values weren’t null and pushed them to a new array of all the ingredient names. 
-
-	* Measurement Strings
- 
-![Measurement Strings](README-Images/Measurements.png)
-
-	* Ingredient Strings
- 
-![Ingredient Strings](README-Images/Ingredients.png)
-
-* We made a similar array for the measurements, but concatenated the ingredients to the end of the measurements string before pushing them to the new array. We set up a count inside of the loop to increase after each iteration. If the index of the current count in the ingredient name array was null, the iteration stopped so we wouldn’t iterate through the extra empty measurement strings.  
-
-	* Loops to Display Ingredients
- 
-![Ingredient Loops](README-Images/IngredientLoop.png)
-
-
-# Key Learnings
-
-* We had trouble at first getting data back and we thought we needed to use a proxy to get a response from our API. So we set up a proxy, and used it while working on the project. When we went to deploy, we realized we originally had trouble because we were trying to access the API using an http:// request rather than the secure https:// and the proxy was unnecessary. 
-* After selecting our API and starting the project, we realized there wasn’t a request we could make that would return all of the recipes. This would make a search bar trickier and we would have to do multiple requests. It’s one of the ways we were limited by the “Freemium” content of our free API.  In projects I did later where I was building my own APIs, this struggle made me really appreciate being able to create endpoints returning exactly the data I needed for specific requests. 
-
-# Bugs
-
-* When users make a request that doesn’t match any other endpoints, the app displays a blank page rather than our 404-page component. 
-
-* There are some YouTube links from the API that have been deleted or made private. We don’t have anything in our code that checks the link validity so the broken links are still displayed. 
-
-# Future Improvements
-
-* I would like to add a search bar that could return results from matching recipe names and ingredients.
+I would like to have included  a search function in some capacity. I think it would have made most sense to be able to search by ingredient so that you can cook based on the food you already have. 
