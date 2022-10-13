@@ -121,7 +121,7 @@ We then mapped through ingredients, firstly checking if the ingredient was truth
 
 Another challenge was getting our YouTube videos to embed. We wanted to embed them because an embedded video looks better than YouTube links, and it also meant that the user would be encouraged to stay on our page. 
 
-We used Slice() to take the last 11 characters from the end of the youtube URLs
+We used Slice() to take the last 11 characters from the end of the YouTube URLs
 
 ![](./ReadMeImages/10.png)
 
@@ -139,7 +139,7 @@ Some YouTube videos, provided by the API, have since been deleted or made privat
 
 This was the first project where we worked with a backend and we were given complete freedom to find an API we were interested in. We liked this one because it had so many routes to play around with and gave us a lot of space to create an interesting website. We used our index of types of foods, to take us to an index of recipes within that cuisine and finally a single recipe page. We also had a random recipe page to take us to a single recipe page. This meant that our website felt full. A big win was that the fullness of our website naturally led to multiple routes - having routes at all was something we considered to be a “nice to have” feature. 
 
-Another win was that we were able to complete this project almost entirely independently, we were shown how to use react only a few days before we started this project, and were able to apply our knowledge with minimal assistance from our instructors, only needing help with deploying our final project - which is understandable as it was our first time using Netlify. 
+Another win was that we were able to complete this project almost entirely independently, we were shown how to use React only a few days before we started this project, and were able to apply our knowledge with minimal assistance from our instructors, only needing help with deploying our final project - which is understandable as it was our first time using Netlify. 
 
 ## Key Learnings and Takeaways
 
