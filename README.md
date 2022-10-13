@@ -1,4 +1,4 @@
-## DescriptionDescription
+## Description
 
 After 2 weeks of learning React, Bootstrap and how to work with APIs, we were set a paired project (to be completed in under two days) with a brief of creating a React application, containing components which consumed a public API. We were told that if we were feeling ambitious our page could include Routers. 
 
